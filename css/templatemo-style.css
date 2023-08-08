@@ -2,6 +2,7 @@
 	Masonry Template 
 	http://www.templatemo.com/preview/templatemo_434_masonry
 */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&display=swap");
 
 @font-face {
   font-family: "robotolight";
@@ -58,8 +59,9 @@
   overflow: hidden;
 }
 .world-heading {
+  font-family: "Open Sans", sans-serif;
   letter-spacing: 1.5vw;
-  -webkit-text-stroke: medium;
+  /* -webkit-text-stroke: 3px; */
 }
 .description {
   text-align: justify;
