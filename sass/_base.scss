@@ -47,6 +47,13 @@ h5 {
   font-size: 16px;
   font-weight: normal;
 }
+.white-glass-morph {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
 
 ::-webkit-input-placeholder {
   color: $white;
@@ -71,7 +78,7 @@ h5 {
   height: 100%;
   width: 100%;
   z-index: 0;
-  background-image: url(../images/21.jpg);
+  background-image: url(../images/45.webp);
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
