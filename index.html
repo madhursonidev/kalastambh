@@ -17,7 +17,7 @@
     <meta property="og:title" content="Kalastambh" />
     <meta property="og:description" content="International Art Group" />
     <meta property="og:url" content="http://kalastambh.com/" />
-    <meta property="og:image" content="/images/30.jpeg" />
+    <meta property="og:image" content="/images/53.jpeg" />
     <meta property="favicon" content="/images/kalastambh-icon.png" />
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -105,16 +105,16 @@
             </p>
             <div class="col-12 py-5">
               <h1 class="h1 text-center text-uppercase world-heading">
-                <b
-                  >Madhya Pradesh Art Festival
-                  <span style="color: red">2.0</span></b
-                >
+                <b>World ART DAY</b>
               </h1>
+              <h5 class="h5 text-center text-uppercase world-sub-heading">
+                <b>heritage art exhibition</b>
+              </h5>
             </div>
 
             <div class="col-11 col-lg-9">
               <div class="row justify-content-center">
-                <div class="col-12 text-center justify-content-center">
+                <!-- <div class="col-12 text-center justify-content-center">
                   <div class="row text-start" id="events"></div>
                 </div>
                 <div class="col-11 white-glass-morph lead mt-3">
@@ -126,35 +126,23 @@
                     Jewelry Design, Graffiti Art, Mosaic, Performance Art,
                     Installation Art, and more!
                   </p>
-                </div>
-                <div class="col-11 lead">
-                  <div
-                    class="row text-md-start text-center justify-content-center mt-md-3"
-                  >
-                    <div class="col-12 col-md-4 mt-3 mt-md-0">When</div>
-                    <div class="col-12 col-md-1 d-none d-md-block">:</div>
-                    <div class="col-12 col-md-7 fw-bold">
-                      13, 14, 15 January 2024
+                </div> -->
+                <div class="col-12 lead d-flex justify-content-center">
+                  <div class="event-details">
+                    <div class="mt-3 mt-md-0">When</div>
+                    <div>
+                      <span class="colon">: </span
+                      ><span class="fw-bold">14 & 15 April 2024</span>
                     </div>
-                    <div class="col-12 col-md-4 mt-3 mt-md-0">Where</div>
-                    <div class="col-12 col-md-1 d-none d-md-block">:</div>
-                    <div class="col-12 col-md-7">
-                      <span class="fw-bold">Gandhi Hall</span>, Indore
+                    <div class="mt-3 mt-md-0">Where</div>
+                    <div>
+                      <span class="colon">: </span
+                      ><span class="fw-bold">Bada Rawala Palace</span>, Indore
                     </div>
-                  </div>
-                </div>
-                <div class="col-12 py-3 text-center">
-                  <p class="display-6">CASH PRIZE FOR ALL WINNERS</p>
-                  <p>Registration Fee &#8377;500/-</p>
-                  <div class="d-flex justify-content-center mt-3">
-                    <div class="">
-                      <a
-                        target="_blank"
-                        href="https://forms.gle/hTiM9xykUJVT4d9h9"
-                        class="btn btn-light"
-                      >
-                        Register Now
-                      </a>
+                    <div class="mt-3 mt-md-0">Last Date of Registration</div>
+                    <div>
+                      <span class="colon">: </span
+                      ><span class="fw-bold">10 April 2024</span>
                     </div>
                   </div>
                 </div>
@@ -171,6 +159,12 @@
     <div class="main-posts">
       <div class="container">
         <div class="row blog-masonry masonry-true">
+          <!-- /.post-masonry -->
+          <div class="post-masonry col-12 col-sm-6 col-lg-4">
+            <div class="post-thumb">
+              <img src="images/53.jpeg" alt="World ART DAY" loading="lazy" />
+            </div>
+          </div>
           <!-- /.post-masonry -->
           <div class="post-masonry col-12 col-sm-6 col-lg-4">
             <div class="post-thumb">
@@ -572,38 +566,38 @@
 
     <script type="text/javascript">
       const eventPoints = [
-        "Art & Craft Exhibition",
-        "Art Sales",
-        "Artistic Performances",
-        "Artistic Meet-up",
+        'Art & Craft Exhibition',
+        'Art Sales',
+        'Artistic Performances',
+        'Artistic Meet-up',
         "Artist's Alley",
-        "Artisan Market",
-        "Art & Craft Bazaar",
-        "Live Music & Competition",
-        "Poetry",
-        "Dance Competition",
-        "Community Involvement",
-        "Evening Events",
-        "Food Stalls",
-        "Art Workshops",
-        "Live Contest",
-        "Painting Competition",
-        "Literature Activity",
-      ];
+        'Artisan Market',
+        'Art & Craft Bazaar',
+        'Live Music & Competition',
+        'Poetry',
+        'Dance Competition',
+        'Community Involvement',
+        'Evening Events',
+        'Food Stalls',
+        'Art Workshops',
+        'Live Contest',
+        'Painting Competition',
+        'Literature Activity',
+      ]
 
-      let text = "";
-      for (let i = 0; i < eventPoints.length; i++) {
-        text += `<h6 class="col-12 col-md-6 col-xl-4 h6 subtitle">&#x2022; ${eventPoints[i]}</h6>`;
-      }
+      // let text = ''
+      // for (let i = 0; i < eventPoints.length; i++) {
+      //   text += `<h6 class="col-12 col-md-6 col-xl-4 h6 subtitle">&#x2022; ${eventPoints[i]}</h6>`
+      // }
 
-      document.getElementById("events").innerHTML = text;
+      // document.getElementById('events').innerHTML = text
       //<![CDATA[
       $(window).load(function () {
         // makes sure the whole site is loaded
-        $("#loader").fadeOut(); // will first fade out the loading animation
-        $("#loader-wrapper").delay(350).fadeOut("slow"); // will fade out the white DIV that covers the website.
-        $("body").delay(350).css({ "overflow-y": "visible" });
-      });
+        $('#loader').fadeOut() // will first fade out the loading animation
+        $('#loader-wrapper').delay(350).fadeOut('slow') // will fade out the white DIV that covers the website.
+        $('body').delay(350).css({ 'overflow-y': 'visible' })
+      })
       //]]>
     </script>
   </body>
