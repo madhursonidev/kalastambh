@@ -63,14 +63,12 @@ const mediaItems = [
     src: 'images/50.jpeg',
     alt: 'Madhya Pradesh Art Festival',
   },
-  { type: 'video', src: 'images/102.mp4' },
   {
     type: 'image',
     src: 'images/44.jpeg',
     alt: 'Madhya Pradesh Art Festival',
   },
   { type: 'image', src: 'images/30.jpg', alt: '' },
-  { type: 'video', src: 'images/101.mp4' },
   { type: 'image', src: 'images/34.jpeg', alt: '' },
   { type: 'image', src: 'images/33.jpeg', alt: '' },
   { type: 'image', src: 'images/32.jpeg', alt: '' },
@@ -111,11 +109,7 @@ const mediaItems = [
   { type: 'image', src: 'images/23.jpg', alt: '' },
 ];
 
-// Get the gallery container
-const gallery = document.getElementById('gallery');
-
-// Generate gallery dynamically
-mediaItems.forEach(item => {
+mediaItems.forEach((item, index) => {
   // Create a div for the post masonry
   const postMasonry = document.createElement('div');
   postMasonry.className = 'post-masonry col-12 col-sm-6 col-lg-4';
@@ -125,33 +119,65 @@ mediaItems.forEach(item => {
   postThumb.className = 'post-thumb lh-0';
 
   // Check the media type and create the appropriate element
-  if (item.type === 'image') {
-    const img = document.createElement('img');
-    img.src = item.src;
-    img.alt = item.alt;
-    img.loading = 'lazy';
-    postThumb.appendChild(img);
-  } else if (item.type === 'video') {
-    const video = document.createElement('video');
-    video.width = '100%';
-    video.height = 'auto';
-    video.autoplay = true;
-    video.loop = true;
-    video.muted = true;
-    video.controls = true;
 
-    const source = document.createElement('source');
-    source.src = item.src;
-    source.type = 'video/mp4';
+  const link = document.createElement('a');
+  link.href = `#img${index}`; // Lightbox link
+  link.className = 'lightbox-trigger';
 
-    video.appendChild(source);
-    video.textContent = 'Your browser does not support the video tag.';
-    postThumb.appendChild(video);
-  }
+  const img = document.createElement('img');
+  img.src = item.src;
+  img.alt = item.alt;
+  img.loading = 'lazy';
+
+  link.appendChild(img);
+  postThumb.appendChild(link);
 
   // Append post thumb to post masonry
   postMasonry.appendChild(postThumb);
 
   // Append post masonry to gallery container
   gallery.appendChild(postMasonry);
+});
+
+// Add lightbox functionality
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+
+// Event delegation for images
+gallery.addEventListener('click', e => {
+  if (e.target.tagName === 'IMG') {
+    e.preventDefault();
+    const imgSrc = e.target.src;
+    const imgAlt = e.target.alt;
+
+    lightboxImg.src = imgSrc;
+    lightboxImg.alt = imgAlt;
+    lightbox.style.display = 'flex';
+
+    history.pushState({ lightboxOpen: true }, '');
+  }
+});
+
+// Close lightbox
+lightbox.addEventListener('click', e => {
+  if (e.target.className === 'close' || e.target === lightbox) {
+    e.preventDefault(); // Prevent any default browser behavior
+    e.stopPropagation(); // Prevent event bubbling
+    lightbox.style.display = 'none';
+    lightboxImg.src = '';
+    lightboxImg.alt = '';
+    history.back();
+  }
+});
+
+// Close lightbox on Escape key press
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    // Check if the Escape key was pressed
+    // Hide the lightbox
+    lightbox.style.display = 'none';
+    lightboxImg.src = '';
+    lightboxImg.alt = '';
+    history.back();
+  }
 });
