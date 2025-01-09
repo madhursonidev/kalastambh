@@ -18,57 +18,57 @@ const attractions = [
     title: "Madhya Pradesh's BIGGEST ART SALE",
     description: "Explore and acquire stunning artworks from talented artists.",
     icon: Palette,
-    image: "/placeholder.svg?height=300&width=400",
+    image: "/images/9.jpg",
   },
   {
     title: "Art Trade Fair",
     description:
       "Connect with art dealers and collectors from around the world.",
     icon: ShoppingBag,
-    image: "/placeholder.svg?height=300&width=400",
+    image: "/images/79.jpg",
   },
   {
     title: "Art and Photography Exhibition",
     description: "Immerse yourself in captivating visual storytelling.",
     icon: Camera,
-    image: "/placeholder.svg?height=300&width=400",
+    image: "/images/21.jpg",
   },
   {
     title: "Dance & Painting Competitions",
     description: "Witness and participate in thrilling artistic showdowns.",
     icon: Users,
-    image: "/placeholder.svg?height=300&width=400",
+    image: "/images/497091.webp",
   },
   {
     title: "Live Musical Performances & Band Shows",
     description: "Experience soul-stirring melodies and rhythms.",
     icon: Music,
-    image: "/placeholder.svg?height=300&width=400",
+    image: "/images/Domingos+3.jpg",
   },
   {
     title: "Poetry & Stand-Up Comedy Acts",
     description: "Enjoy thought-provoking verses and hearty laughter.",
     icon: Mic,
-    image: "/placeholder.svg?height=300&width=400",
+    image: "/images/Live-Poetry-Readings-for-Newbies-Notes-of-Oak-Blog.jpg",
   },
   {
     title: "Literary Sessions & Panel Discussions",
     description:
       "Engage in stimulating conversations with literary luminaries.",
     icon: Book,
-    image: "/placeholder.svg?height=300&width=400",
+    image: "/images/24.jpg",
   },
   {
     title: "Handicrafts, Handloom & Art Market",
     description: "Shop for unique, handcrafted treasures and artworks.",
     icon: ShoppingBag,
-    image: "/placeholder.svg?height=300&width=400",
+    image: "/images/10_Dec-_Craft_Mela.webp",
   },
   {
     title: "Delicious Food Stalls",
     description: "Savor a diverse array of culinary delights.",
     icon: Utensils,
-    image: "/placeholder.svg?height=300&width=400",
+    image: "/images/image_food_stall.jpg",
   },
 ];
 

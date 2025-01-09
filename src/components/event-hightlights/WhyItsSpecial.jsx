@@ -29,7 +29,7 @@ export function WhyItsSpecial() {
           className="relative h-64 w-full lg:h-auto lg:w-1/2"
         >
           <Image
-            src="/placeholder.svg?height=400&width=600"
+            src="/images/40.jpeg"
             alt="Artists collaborating"
             layout="fill"
             objectFit="cover"

@@ -6,7 +6,6 @@ import { MainAttractions } from "./MainAttractions";
 import { WhatToExpect } from "./WhatToExpect";
 import { CompetitionsActivities } from "./CompetitionsActivities";
 import { WhyItsSpecial } from "./WhyItsSpecial";
-import { ScrollIndicator } from "src/components/ScrollIndicator";
 
 export function EventHighlightsSection() {
   return (
@@ -25,7 +24,6 @@ export function EventHighlightsSection() {
           <WhyItsSpecial />
         </motion.div>
       </div>
-      <ScrollIndicator />
     </section>
   );
 }
