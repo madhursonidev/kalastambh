@@ -8,13 +8,14 @@ import { EventDetails } from "./EventDetails";
 import { KeyAttractions } from "./KeyAttractions";
 import { CTAButtons } from "./CTAButtons";
 import { FeaturedArtists } from "./FeaturedArtists";
-import { ScrollIndicator } from "./ScrollIndicator";
+import { ScrollIndicator } from "../ScrollIndicator";
+
 
 export function HeroSection() {
   return (
     <section className="relative min-h-screen w-full overflow-hidden text-white">
       <div
-        className="absolute inset-0 z-0"
+        className="absolute inset-0 -z-10"
         style={{
           backgroundImage:
             'url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80")',
@@ -23,7 +24,7 @@ export function HeroSection() {
           backgroundRepeat: "no-repeat",
         }}
       />
-      <div className="absolute inset-0 z-10 bg-gradient-to-br from-purple-900 via-pink-700 to-orange-500 opacity-85" />
+      <div className="absolute inset-0 -z-[5] bg-gradient-to-br from-purple-900 via-pink-700 to-orange-500 opacity-85" />
       <DynamicBackground />
       <div className="container mx-auto px-4 py-12 sm:px-6 lg:px-8">
         <motion.div
