@@ -7,22 +7,22 @@ const milestones = [
   {
     year: 2010,
     achievement: 'Inaugural Madhya Pradesh Art Festival with 100 artists',
-    image: 'https://placehold.co/150x200',
+    image: 'https://picsum.photos/200/150',
   },
   {
     year: 2015,
     achievement: 'Expanded to include literary and performing arts',
-    image: 'https://placehold.co/150x200',
+    image: 'https://picsum.photos/200/150',
   },
   {
     year: 2020,
     achievement: 'Virtual edition reached 1 million online viewers',
-    image: 'https://placehold.co/150x200',
+    image: 'https://picsum.photos/200/150',
   },
   {
     year: 2025,
     achievement: 'Celebrating 15 years with over 1000 participating artists',
-    image: 'https://placehold.co/150x200',
+    image: 'https://picsum.photos/200/150',
   },
 ];
 
@@ -45,7 +45,7 @@ export function FestivalJourney() {
           >
             <div className='md:w-1/3'>
               <img
-                src={milestone.image || 'https://placehold.co/150x200'}
+                src={milestone.image || 'https://picsum.photos/200/150'}
                 alt={`Milestone ${milestone.year}`}
                 className='rounded-lg object-cover shadow-lg'
               />

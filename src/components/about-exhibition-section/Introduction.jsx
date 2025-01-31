@@ -13,7 +13,7 @@ export function Introduction() {
         className='lg:w-1/2'
       >
         <img
-          src='https://placehold.co/600x400'
+          src='https://picsum.photos/400/600'
           alt='Madhya Pradesh Art Festival'
           className='rounded-lg object-cover shadow-lg'
         />

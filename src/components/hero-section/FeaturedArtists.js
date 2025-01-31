@@ -4,10 +4,10 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 const artists = [
-  { name: 'Amrita Sher-Gil', image: 'https://placehold.co/100x100' },
-  { name: 'M.F. Husain', image: 'https://placehold.co/100x100' },
-  { name: 'Anjolie Ela Menon', image: 'https://placehold.co/100x100' },
-  { name: 'Jitish Kallat', image: 'https://placehold.co/100x100' },
+  { name: 'Amrita Sher-Gil', image: 'https://picsum.photos/100' },
+  { name: 'M.F. Husain', image: 'https://picsum.photos/100' },
+  { name: 'Anjolie Ela Menon', image: 'https://picsum.photos/100' },
+  { name: 'Jitish Kallat', image: 'https://picsum.photos/100' },
 ];
 
 export function FeaturedArtists() {

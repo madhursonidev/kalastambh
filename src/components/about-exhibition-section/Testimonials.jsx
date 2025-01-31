@@ -9,14 +9,14 @@ const testimonials = [
       "The Madhya Pradesh Art Festival is a true celebration of India's rich cultural heritage and contemporary creativity.",
     author: 'Priya Sharma',
     role: 'Renowned Painter',
-    image: 'https://placehold.co/100x100',
+    image: 'https://picsum.photos/100',
   },
   {
     quote:
       'As a first-time attendee, I was blown away by the diversity and quality of art on display. It was an unforgettable experience.',
     author: 'Rahul Verma',
     role: 'Art Enthusiast',
-    image: 'https://placehold.co/100x100',
+    image: 'https://picsum.photos/100',
   },
 ];
 
@@ -36,7 +36,7 @@ export function Testimonials() {
             className='flex flex-col items-center space-y-4 rounded-lg bg-white p-6 text-center shadow-lg'
           >
             <img
-              src={testimonial.image || 'https://placehold.co/100x100'}
+              src={testimonial.image || 'https://picsum.photos/100'}
               alt={testimonial.author}
               className='rounded-full'
             />
