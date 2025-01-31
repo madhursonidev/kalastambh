@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import { motion } from "framer-motion";
-import Image from "next/image";
+import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 const artists = [
-  { name: "Amrita Sher-Gil", image: "/placeholder.svg?height=100&width=100" },
-  { name: "M.F. Husain", image: "/placeholder.svg?height=100&width=100" },
-  { name: "Anjolie Ela Menon", image: "/placeholder.svg?height=100&width=100" },
-  { name: "Jitish Kallat", image: "/placeholder.svg?height=100&width=100" },
+  { name: 'Amrita Sher-Gil', image: 'https://placehold.co/100x100' },
+  { name: 'M.F. Husain', image: 'https://placehold.co/100x100' },
+  { name: 'Anjolie Ela Menon', image: 'https://placehold.co/100x100' },
+  { name: 'Jitish Kallat', image: 'https://placehold.co/100x100' },
 ];
 
 export function FeaturedArtists() {
@@ -16,10 +16,10 @@ export function FeaturedArtists() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: 0.8 }}
-      className="w-full max-w-4xl"
+      className='w-full max-w-4xl'
     >
-      <h2 className="mb-4 text-2xl font-bold">Featured Artists</h2>
-      <div className="flex justify-center space-x-4">
+      <h2 className='mb-4 text-2xl font-bold'>Featured Artists</h2>
+      <div className='flex justify-center space-x-4'>
         {artists.map((artist, index) => (
           <motion.div
             key={artist.name}
@@ -27,17 +27,15 @@ export function FeaturedArtists() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.1 * index }}
             whileHover={{ scale: 1.1 }}
-            className="group relative"
+            className='group relative'
           >
-            <Image
+            <img
               src={artist.image}
               alt={artist.name}
-              width={100}
-              height={100}
-              className="rounded-full"
+              className='rounded-full'
             />
-            <div className="absolute inset-0 flex items-center justify-center rounded-full bg-black bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
-              <span className="text-sm font-medium text-white">
+            <div className='absolute inset-0 flex items-center justify-center rounded-full bg-black bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100'>
+              <span className='text-sm font-medium text-white'>
                 {artist.name}
               </span>
             </div>
