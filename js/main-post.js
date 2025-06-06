@@ -1,5 +1,21 @@
 //post-masonry
 const mediaItems = [
+  { type: 'image', src: 'images/98.jpg', alt: '' },
+  { type: 'image', src: 'images/97.jpg', alt: '' },
+  { type: 'image', src: 'images/96.jpg', alt: '' },
+  { type: 'image', src: 'images/95.jpg', alt: '' },
+  { type: 'image', src: 'images/94.jpg', alt: '' },
+  { type: 'image', src: 'images/93.jpg', alt: '' },
+  { type: 'image', src: 'images/92.jpg', alt: '' },
+  { type: 'image', src: 'images/91.jpg', alt: '' },
+  { type: 'image', src: 'images/90.jpg', alt: '' },
+  { type: 'image', src: 'images/89.jpg', alt: '' },
+  { type: 'image', src: 'images/88.jpg', alt: '' },
+  { type: 'image', src: 'images/87.jpg', alt: '' },
+  { type: 'image', src: 'images/86.jpg', alt: '' },
+  { type: 'image', src: 'images/85.jpg', alt: '' },
+  { type: 'image', src: 'images/84.jpg', alt: '' },
+  { type: 'image', src: 'images/83.jpg', alt: '' },
   {
     type: 'image',
     src: 'images/82.jpeg',
