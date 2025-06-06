@@ -1,7 +1,8 @@
 'use client';
 
-import Link from 'next/link';
-import { motion } from 'framer-motion';
+import dynamic from 'next/dynamic';
+
+const MotionLi = dynamic(() => import('./MotionLi'), { ssr: false });
 
 const links = [
   { href: '/', label: 'Home 🏠' },
@@ -21,14 +22,7 @@ export function QuickLinksColumn() {
       <h3 className='text-xl font-semibold mb-4'>Quick Links</h3>
       <ul className='space-y-2'>
         {links.map(link => (
-          <motion.li key={link.href} whileHover={{ x: 5 }}>
-            <Link
-              href={link.href}
-              className='hover:text-rose-600 dark:hover:text-rose-400 transition-colors'
-            >
-              {link.label}
-            </Link>
-          </motion.li>
+          <MotionLi key={link.href} href={link.href} label={link.label} />
         ))}
       </ul>
     </div>

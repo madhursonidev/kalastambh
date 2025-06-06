@@ -3,8 +3,15 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
 export function FeaturedArticle({ article }) {
+  const [formattedDate, setFormattedDate] = useState('');
+
+  useEffect(() => {
+    setFormattedDate(new Date(article.date).toLocaleDateString());
+  }, [article?.date]);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -33,8 +40,7 @@ export function FeaturedArticle({ article }) {
             {article.excerpt}
           </p>
           <div className='mb-4 text-sm text-gray-500 dark:text-gray-400'>
-            <span>{article.author}</span> •{' '}
-            <span>{new Date(article.date).toLocaleDateString()}</span>
+            <span>{article.author}</span> • <span>{formattedDate}</span>
           </div>
           <Link
             href={`/blog/${article.id}`}
