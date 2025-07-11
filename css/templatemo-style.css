@@ -138,6 +138,14 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.color-primary {
+  background: #f2181c;
+  background: linear-gradient(to right, #f2181c 0%, #801617 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 @media screen and (max-width: 768px) {
   .event-details {
     text-align: center;
@@ -447,6 +455,10 @@ h5 {
   color: #c01719;
 }
 
+.text-sm {
+  font-size: 14px;
+}
+
 .content-bg {
   position: fixed;
   height: 100%;
@@ -598,6 +610,7 @@ h5 {
   position: relative;
   z-index: 4;
   background: rgba(0, 0, 0, 0.6);
+  background: url(../images/bg-tiger.webp) no-repeat right center / cover;
   margin-bottom: 40px;
   padding-bottom: 30px;
 }

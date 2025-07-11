@@ -1,5 +1,6 @@
 //post-masonry
 const mediaItems = [
+  { type: 'image', src: 'images/99.jpg', alt: 'Indore Tiger Festival 2025' },
   { type: 'image', src: 'images/98.jpg', alt: '' },
   { type: 'image', src: 'images/97.jpg', alt: '' },
   { type: 'image', src: 'images/96.jpg', alt: '' },
