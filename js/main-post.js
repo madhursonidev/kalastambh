@@ -1,5 +1,10 @@
 //post-masonry
 const mediaItems = [
+  {
+    type: 'image',
+    src: 'images/101.jpg',
+    alt: 'Madhya Pradesh Art Festival 2026',
+  },
   { type: 'image', src: 'images/100.jpg', alt: 'Indore Tiger Festival 2025' },
   { type: 'image', src: 'images/99.jpg', alt: 'Indore Tiger Festival 2025' },
   { type: 'image', src: 'images/98.jpg', alt: '' },
