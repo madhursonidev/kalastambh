@@ -608,8 +608,13 @@ h5 {
 .site-top {
   position: relative;
   z-index: 4;
-  background: rgba(0, 0, 0, 0.6);
-  background: url(../images/bg-tiger.webp) no-repeat right center / cover;
+  /* Layer a semi-transparent black gradient over the image to darken it
+     so inner content remains readable. */
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url(../images/bg-2.jpg) no-repeat center center / cover;
+  /* Use multiply to increase contrast between gradient and image on some browsers */
+  -webkit-background-blend-mode: multiply;
+  background-blend-mode: multiply;
   margin-bottom: 40px;
   padding-bottom: 30px;
 }
