@@ -615,8 +615,245 @@ h5 {
   /* Use multiply to increase contrast between gradient and image on some browsers */
   -webkit-background-blend-mode: multiply;
   background-blend-mode: multiply;
-  margin-bottom: 40px;
-  padding-bottom: 30px;
+  margin-bottom: 0;
+  padding: 200px 0 60px 0;
+  /* margin-top: 80px; */
+}
+
+@media screen and (max-width: 768px) {
+  .site-top {
+    padding: 100px 0 60px 0;
+  }
+}
+
+/* Sticky Navigation Bar */
+.sticky-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  background: rgba(0, 0, 0, 0);
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  padding: 40px 0;
+  /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); */
+  transition: all 500ms ease-in-out;
+}
+
+.sticky-navbar.scrolled {
+  padding: 15px 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.sticky-navbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.site-brand-nav {
+  display: block;
+  max-width: 400px;
+  width: 100%;
+  transition: max-width 300ms ease-in-out;
+}
+
+.site-brand-nav img {
+  width: 100%;
+  height: auto;
+}
+
+.social-icons-nav ul {
+  margin: 0;
+  padding: 0;
+}
+
+.social-icons-nav a {
+  color: #fff;
+  font-size: 24px;
+  transition: all 150ms ease-in-out;
+  display: inline-block;
+}
+
+.social-icons-nav a:hover {
+  color: #6cc0f7;
+  transform: scale(1.2);
+}
+
+.sticky-navbar.scrolled .site-brand-nav {
+  max-width: 180px;
+}
+
+.sticky-navbar.scrolled .social-icons-nav a {
+  font-size: 18px;
+}
+
+@media screen and (max-width: 768px) {
+  .sticky-navbar {
+    padding: 15px 0;
+  }
+
+  .site-brand-nav {
+    max-width: 200px;
+  }
+
+  .social-icons-nav a {
+    font-size: 18px;
+  }
+
+  .sticky-navbar.scrolled .site-brand-nav {
+    max-width: 140px;
+  }
+
+  .sticky-navbar.scrolled .social-icons-nav a {
+    font-size: 16px;
+  }
+}
+
+/* About Us Section */
+.about-us-section {
+  position: relative;
+  z-index: 6;
+  padding: 80px 0;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+}
+
+.about-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 60px 50px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: all 300ms ease-in-out;
+}
+
+.about-card:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+.about-content {
+  text-align: center;
+}
+
+.about-logo {
+  margin-bottom: 30px;
+}
+
+.about-logo img {
+  max-width: 250px;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+  transition: all 300ms ease-in-out;
+}
+
+.about-card:hover .about-logo img {
+  transform: scale(1.05);
+}
+
+.about-heading {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: #fff;
+  font-family: 'Open Sans', sans-serif;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  background: linear-gradient(to right, #f2181c, #ff6b6b);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.about-description {
+  font-size: 16px;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 30px;
+  font-family: 'robotolight', sans-serif;
+  text-align: justify;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.about-tagline {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 35px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tagline-text {
+  font-size: 18px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background: linear-gradient(to right, #f2181c, #801617);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all 300ms ease-in-out;
+}
+
+.tagline-dot {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 20px;
+}
+
+.about-card:hover .tagline-text {
+  letter-spacing: 3px;
+}
+
+@media screen and (max-width: 768px) {
+  .about-us-section {
+    padding: 60px 0;
+  }
+
+  .about-card {
+    padding: 40px 30px;
+    border-radius: 15px;
+  }
+
+  .about-heading {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+
+  .about-logo img {
+    max-width: 180px;
+  }
+
+  .about-description {
+    font-size: 14px;
+    line-height: 1.7;
+    text-align: center;
+  }
+
+  .about-tagline {
+    gap: 10px;
+    font-size: 14px;
+  }
+
+  .tagline-text {
+    font-size: 14px;
+  }
 }
 
 .site-header {
