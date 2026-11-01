@@ -1,4 +1,13 @@
 //post-masonry
+const gallery = document.getElementById('gallery');
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const galleryLoader = document.getElementById('gallery-loader');
+
+if (!gallery || !lightbox || !lightboxImg || !galleryLoader) {
+  throw new Error('Gallery, lightbox, and loader elements are required to render the photo gallery.');
+}
+
 const mediaItems = [
   {
     type: 'image',
@@ -142,75 +151,141 @@ const mediaItems = [
   { type: 'image', src: 'images/23.jpg', alt: '' },
 ];
 
-mediaItems.forEach((item, index) => {
-  // Create a div for the post masonry
-  const postMasonry = document.createElement('div');
-  postMasonry.className = 'post-masonry col-12 col-sm-6 col-lg-4';
-
-  // Create a div for the post thumb
-  const postThumb = document.createElement('div');
-  postThumb.className = 'post-thumb lh-0';
-
-  // Check the media type and create the appropriate element
-
+let galleryItems = mediaItems.map((item, index) => {
+  const galleryItem = document.createElement('div');
+  galleryItem.className = 'gallery-item';
   const link = document.createElement('a');
-  link.href = `#img${index}`; // Lightbox link
+  link.href = item.src;
   link.className = 'lightbox-trigger';
+  link.setAttribute('aria-label', `Open image ${index + 1} in preview`);
 
   const img = document.createElement('img');
   img.src = item.src;
   img.alt = item.alt;
-  img.loading = 'lazy';
+  img.loading = 'eager';
+  img.fetchPriority = 'low';
 
   link.appendChild(img);
-  postThumb.appendChild(link);
+  galleryItem.appendChild(link);
 
-  // Append post thumb to post masonry
-  postMasonry.appendChild(postThumb);
-
-  // Append post masonry to gallery container
-  gallery.appendChild(postMasonry);
+  return galleryItem;
 });
 
-// Add lightbox functionality
-const lightbox = document.getElementById('lightbox');
-const lightboxImg = document.getElementById('lightbox-img');
+const targetRowHeight = 220;
+const itemBorderWidth = 2;
+const galleryGap = 24;
 
-// Event delegation for images
+function getRowHeight(items, availableWidth) {
+  const aspectRatioTotal = items.reduce((total, item) => {
+    const img = item.querySelector('img');
+    return total + img.naturalWidth / img.naturalHeight;
+  }, 0);
+
+  return (
+    (availableWidth -
+      galleryGap * (items.length - 1) -
+      itemBorderWidth * items.length) /
+    aspectRatioTotal
+  );
+}
+
+function layoutGallery() {
+  const availableWidth = gallery.clientWidth;
+  if (!availableWidth) return;
+
+  const rows = [];
+  let row = [];
+
+  galleryItems.forEach(item => {
+    row.push(item);
+
+    if (row.length > 1 && getRowHeight(row, availableWidth) <= targetRowHeight) {
+      const previousRow = row.slice(0, -1);
+      if (
+        Math.abs(targetRowHeight - getRowHeight(previousRow, availableWidth)) <
+        Math.abs(getRowHeight(row, availableWidth) - targetRowHeight)
+      ) {
+        rows.push(previousRow);
+        row = [item];
+      } else {
+        rows.push(row);
+        row = [];
+      }
+    }
+  });
+
+  if (row.length) rows.push(row);
+
+  const galleryLayout = document.createDocumentFragment();
+  rows.forEach((items, rowIndex) => {
+    const galleryRow = document.createElement('div');
+    galleryRow.className = 'gallery-row';
+
+    const rowHeight =
+      rowIndex === rows.length - 1
+        ? Math.min(targetRowHeight, getRowHeight(items, availableWidth))
+        : getRowHeight(items, availableWidth);
+
+    items.forEach(item => {
+      const img = item.querySelector('img');
+      const aspectRatio = img.naturalWidth / img.naturalHeight;
+      item.style.width = `${aspectRatio * rowHeight + itemBorderWidth}px`;
+      item.style.height = `${rowHeight + itemBorderWidth}px`;
+      galleryRow.appendChild(item);
+    });
+
+    galleryLayout.appendChild(galleryRow);
+  });
+  gallery.replaceChildren(galleryLayout);
+}
+
+Promise.allSettled(galleryItems.map(item => item.querySelector('img').decode()))
+  .then(results => {
+    const failedItems = galleryItems.filter((item, index) => results[index].status === 'rejected');
+    if (failedItems.length) {
+      console.error(
+        'Unable to load gallery images:',
+        failedItems.map(item => item.querySelector('img').src)
+      );
+      galleryItems = galleryItems.filter((item, index) => results[index].status === 'fulfilled');
+    }
+
+    layoutGallery();
+    window.addEventListener('resize', layoutGallery);
+    galleryLoader.classList.add('is-hidden');
+    galleryLoader.setAttribute('aria-hidden', 'true');
+  })
+  .catch(error => {
+    console.error('Unable to load gallery images for justified layout.', error);
+    galleryLoader.classList.add('is-hidden');
+    galleryLoader.setAttribute('aria-hidden', 'true');
+  });
+
 gallery.addEventListener('click', e => {
-  if (e.target.tagName === 'IMG') {
+  if (e.target instanceof HTMLImageElement) {
     e.preventDefault();
-    const imgSrc = e.target.src;
-    const imgAlt = e.target.alt;
-
-    lightboxImg.src = imgSrc;
-    lightboxImg.alt = imgAlt;
+    lightboxImg.src = e.target.src;
+    lightboxImg.alt = e.target.alt;
     lightbox.style.display = 'flex';
-
-    history.pushState({ lightboxOpen: true }, '');
+    lightbox.setAttribute('aria-hidden', 'false');
   }
 });
 
-// Close lightbox
 lightbox.addEventListener('click', e => {
-  if (e.target.className === 'close' || e.target === lightbox) {
-    e.preventDefault(); // Prevent any default browser behavior
-    e.stopPropagation(); // Prevent event bubbling
+  if (e.target === lightbox || e.target.classList.contains('close')) {
+    e.preventDefault();
     lightbox.style.display = 'none';
+    lightbox.setAttribute('aria-hidden', 'true');
     lightboxImg.src = '';
     lightboxImg.alt = '';
-    history.back();
   }
 });
 
-// Close lightbox on Escape key press
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') {
-    // Check if the Escape key was pressed
-    // Hide the lightbox
+  if (e.key === 'Escape' && lightbox.style.display === 'flex') {
     lightbox.style.display = 'none';
+    lightbox.setAttribute('aria-hidden', 'true');
     lightboxImg.src = '';
     lightboxImg.alt = '';
-    history.back();
   }
 });
