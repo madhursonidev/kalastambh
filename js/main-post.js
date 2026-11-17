@@ -5,7 +5,9 @@ const lightboxImg = document.getElementById('lightbox-img');
 const galleryLoader = document.getElementById('gallery-loader');
 
 if (!gallery || !lightbox || !lightboxImg || !galleryLoader) {
-  throw new Error('Gallery, lightbox, and loader elements are required to render the photo gallery.');
+  throw new Error(
+    'Gallery, lightbox, and loader elements are required to render the photo gallery.'
+  );
 }
 
 const mediaItems = [
@@ -162,8 +164,7 @@ let galleryItems = mediaItems.map((item, index) => {
   const img = document.createElement('img');
   img.src = item.src;
   img.alt = item.alt;
-  img.loading = 'eager';
-  img.fetchPriority = 'low';
+  img.loading = 'lazy';
 
   link.appendChild(img);
   galleryItem.appendChild(link);
@@ -171,7 +172,7 @@ let galleryItems = mediaItems.map((item, index) => {
   return galleryItem;
 });
 
-const targetRowHeight = 220;
+const targetRowHeight = 400;
 const itemBorderWidth = 2;
 const galleryGap = 24;
 
@@ -199,7 +200,10 @@ function layoutGallery() {
   galleryItems.forEach(item => {
     row.push(item);
 
-    if (row.length > 1 && getRowHeight(row, availableWidth) <= targetRowHeight) {
+    if (
+      row.length > 1 &&
+      getRowHeight(row, availableWidth) <= targetRowHeight
+    ) {
       const previousRow = row.slice(0, -1);
       if (
         Math.abs(targetRowHeight - getRowHeight(previousRow, availableWidth)) <
@@ -228,7 +232,12 @@ function layoutGallery() {
 
     items.forEach(item => {
       const img = item.querySelector('img');
-      const aspectRatio = img.naturalWidth / img.naturalHeight;
+      // Fall back to a default aspect ratio for images that haven't loaded yet
+      // (lazy-loaded offscreen images). Corrected via the 'load' listener above.
+      const aspectRatio =
+        img.naturalWidth && img.naturalHeight
+          ? img.naturalWidth / img.naturalHeight
+          : 4 / 5;
       item.style.width = `${aspectRatio * rowHeight + itemBorderWidth}px`;
       item.style.height = `${rowHeight + itemBorderWidth}px`;
       galleryRow.appendChild(item);
@@ -239,27 +248,21 @@ function layoutGallery() {
   gallery.replaceChildren(galleryLayout);
 }
 
-Promise.allSettled(galleryItems.map(item => item.querySelector('img').decode()))
-  .then(results => {
-    const failedItems = galleryItems.filter((item, index) => results[index].status === 'rejected');
-    if (failedItems.length) {
-      console.error(
-        'Unable to load gallery images:',
-        failedItems.map(item => item.querySelector('img').src)
-      );
-      galleryItems = galleryItems.filter((item, index) => results[index].status === 'fulfilled');
-    }
+// Deferred layout so the loader never gets stuck on offscreen lazy images.
+setTimeout(() => {
+  layoutGallery();
+  window.addEventListener('resize', layoutGallery);
+  galleryLoader.classList.add('is-hidden');
+  galleryLoader.setAttribute('aria-hidden', 'true');
+}, 100);
 
-    layoutGallery();
-    window.addEventListener('resize', layoutGallery);
-    galleryLoader.classList.add('is-hidden');
-    galleryLoader.setAttribute('aria-hidden', 'true');
-  })
-  .catch(error => {
-    console.error('Unable to load gallery images for justified layout.', error);
-    galleryLoader.classList.add('is-hidden');
-    galleryLoader.setAttribute('aria-hidden', 'true');
-  });
+// Re-layout the justified grid whenever an image finishes loading
+// (covers lazy-loaded images that come into view on scroll).
+galleryItems.forEach(item => {
+  const img = item.querySelector('img');
+  img.addEventListener('load', () => layoutGallery());
+  img.addEventListener('error', () => layoutGallery());
+});
 
 gallery.addEventListener('click', e => {
   if (e.target instanceof HTMLImageElement) {
